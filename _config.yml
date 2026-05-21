@@ -1,0 +1,43 @@
+# A change in this file, NEEDS a rebuild!
+#
+
+title: <font size="6"><span style="color:#FFD700">D</span>ocker <span style="color:#FFA500">S</span>tack <span style="color:#FF7F50">M</span>SSQL</font>  <span><font size="4"> - Supporting container </font> </span>
+
+description: <b><i><font size="3">A Docker container for Microsoft SQL Server</font></i></b>
+
+show_downloads: true
+google_analytics:
+theme: jekyll-theme-architect
+
+repository_owner: NicoJanE
+repository_name: # Update this(repository name) if discussions are enabled in GitHub. When Empty it will state 'no Discussions'
+
+home_site_name:
+    - ATS
+    - DTS
+    - WSL
+    - Sponsor
+home_site_url:
+    - https://nicojane.github.io/AI-Home/
+    - https://nicojane.github.io/Docker-Template-Stacks-Home
+    - https://nicojane.github.io/WSL-Template-Stacks-Home
+    - https://nicojane.github.io/Docker-Template-Stacks-Home/sponsor
+
+plugins:
+- jekyll-remote-theme
+- jekyll-toc
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  parse_block_html: true
+
+toc:
+  toc: true
+  toc_label: "Table of Contents"
+  toc_icon: "cog"
+  toc_levels: "1..3"
+
+BaseDir: Howtos
+
+port: 4000

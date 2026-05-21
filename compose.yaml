@@ -1,0 +1,66 @@
+# This file is part of: Docker Template Supporting
+
+networks:
+  dev1-net:
+    external: true
+    name: dev1-net
+    driver: bridge
+    ipam:
+      config:
+        - subnet: ${FIXED_SUBNET}
+
+# 1) Explanation 'external'
+# external: false -> Docker Compose creates the network automatically using the IP defined in .env
+#
+# Change this to 'true' when other Docker services in other compose files must access this service.
+# In that case you need:
+#   1) Use the same network name (dev1-net) in the other Docker compose file
+#   2) Set external to true in the other compose file
+#   3) Use the same network subnet (defined in .env) in both services
+#   4) Start the network manually before starting any of the services
+#
+#       Example: docker network create --subnet=${FIXED_SUBNET} dev1-net
+#
+#   Test if both are on the same network: docker network inspect dev1-net
+
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    restart: "no"
+    networks:
+      dev1-net:
+        ipv4_address: ${FIXED_IP13}
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: ${MSSQL_PID}
+      MSSQL_TCP_PORT: ${MSSQL_PORT}
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD}
+    ports:
+      - "${MSSQL_HOST_PORT}:${MSSQL_PORT}"
+    volumes:
+      - mssql:/var/opt/mssql
+
+  mssql-init:
+    image: mcr.microsoft.com/mssql-tools
+    restart: "no"
+    networks:
+      dev1-net:
+        ipv4_address: ${FIXED_IP14}
+    environment:
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD}
+      MSSQL_DATABASE: ${MSSQL_DATABASE}
+      MSSQL_USER: ${MSSQL_USER}
+      MSSQL_PASSWORD: ${MSSQL_PASSWORD}
+    depends_on:
+      - mssql
+    volumes:
+      - ./docker/mssql-init:/scripts:ro
+    entrypoint: ["/bin/bash", "/scripts/init-db.sh"]
+
+volumes:
+  mssql:
+
+# Create
+# docker compose -f compose.yaml up -d --build --force-recreate --remove-orphans
+# Start
+# docker compose -f compose.yaml up -d
