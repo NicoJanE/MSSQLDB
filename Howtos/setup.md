@@ -20,7 +20,6 @@ docker network ls
 
 2 **Clone the this template**
 ```powershell
-
 git clone https://github.com/NicoJanE/MSSQLDB.git
 ```
 
