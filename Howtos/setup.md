@@ -54,12 +54,12 @@ In your preferred (GUI) tool use the following to access the stock database inst
 
 #### Sample SQL Server Management Studio 22 (Microsoft)
 
-***Server Name*** : **127.0.0.1,14330**
-***Authentication*** : **SQL Server Authentication**
-***User Name*** : **sa**
-***Password*** : **DockerMssql123!**
-***Database*** : **<default>**
-***Encrypt*** : **Optional**
+- **Server Name** : `127.0.0.1,14330`
+- **Authentication** : `SQL Server Authentication`
+- **User Name** : `sa`
+- **Password** : `DockerMssql123!`
+- **Database** : `<default>`
+- **Encrypt**  : `Optional`
 
 #### HeidiSQL on Windows
 
@@ -72,13 +72,13 @@ Use this approach on the host:
 - Use the same host settings shown above: `localhost`, port `14330`, database `docker`, user `docker` or `sa`.
 - For local development, use encrypted connections with `TrustServerCertificate=True` when the client asks for certificate-related settings.
 
-***Network Type*** : **Microsoft SQL server (TCP/IP)**
-***Library*** : **SQLOLEDB**
-***Host/IP*** : **127.0.0.1**
-***User*** : **sa**
-***Password*** : **DockerMssql123!**
-***Port*** : **14330**
-***Database*** : -
+- **Network Type** : `Microsoft SQL server (TCP/IP)`
+- **Library** : `SQLOLEDB`
+- **Host/IP** : `127.0.0.1`
+- **User** : `sa`
+- **Password** : `DockerMssql123!`
+- **Port** : `14330`
+- **Database** :` -`
 
 ### Access the Database from Another Container
 
