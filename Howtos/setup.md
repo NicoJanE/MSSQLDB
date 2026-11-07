@@ -18,13 +18,21 @@ docker network create --subnet=172.40.0.0/24 dev1-net
 docker network ls
 ```
 
-1. **Create and start the container stack**
+2 Clone the this template
+```powershell
+
+git clone https://github.com/NicoJanE/MSSQLDB.git
+```
+
+3. **Create and start the container stack**
+
+In the folder: MSSQLDB execute:
 
 ```powershell
 docker compose -f compose.yaml up -d --force-recreate --remove-orphans
 ```
 
-1. **Verify the network**
+4. **Verify the network**
 
 - Verify that both containers are on the same network: `docker network inspect dev1-net`
 - Verify the SQL Server service from the host: `sqlcmd -S localhost,14330 -U sa -P DockerMssql123! -Q "SELECT name FROM sys.databases"`
@@ -32,6 +40,8 @@ docker compose -f compose.yaml up -d --force-recreate --remove-orphans
 ---
 
 ## ▶️ Usage
+
+In your preferred (GUI) tool use the following to access the stock database instance
 
 ### Default Credentials
 
